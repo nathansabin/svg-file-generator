@@ -110,9 +110,6 @@ init() {
 }
 }
 
-// const user = new DataInput();
-// user.init();
-
 // exports class to other files
 module.exports = DataInput;
 
