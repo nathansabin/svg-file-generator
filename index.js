@@ -17,7 +17,7 @@ user.init()
     }
 })
 
-// svg gen
+// svg file gen
 .then((user) => {
     fs.writeFile("logo.svg", user.gen() , (err) => {
         err ? console.log(err) : console.log("Generated logo.svg")
