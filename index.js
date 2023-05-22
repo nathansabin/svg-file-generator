@@ -1,25 +1,25 @@
 // imports from other files
-const Shape = require("./assets/shapes.js");
-const DataInput = require("./assets/user-input.js");
+const Shape = require("./lib/shapes.js");
+const DataInput = require("./lib/user-input.js");
 const fs = require("fs");
 
 // prompts user than formats data for svg gen
 const user = new DataInput()
 user.init()
 
-.then(() => {
+.then((data) => {
     if (user.shape == "circle") {
-        return new Shape.Circle();
+        return new Shape.Circle(user.character, user.wordColor, user.shape, user.shapeColorVal);
     } else if (user.shape == "square") {
-        return new Shape.Square();
+        return new Shape.Square(user.character, user.wordColor, user.shape, user.shapeColorVal);
     } else if (user.shape == "triangle") {
-        return new Shape.Triangle();
+        return new Shape.Triangle(user.character, user.wordColor, user.shape, user.shapeColorVal);
     }
 })
 
 // svg gen
-.then((data) => {
-    fs.writeFile("logo.svg", data.gen() , (err) => {
+.then((user) => {
+    fs.writeFile("logo.svg", user.gen() , (err) => {
         err ? console.log(err) : console.log("Generated logo.svg")
     })
 })
